@@ -1,11 +1,11 @@
-getComputerChoice();
-getHumanChoice();
-
 //variables
 
 let humanScore = 0;
 let computerScore = 0;
+let numbOfRounds = 0;
 
+//execution
+playGame();
 //functions
 
 
@@ -16,25 +16,24 @@ function getComputerChoice()
     switch(randomNum) 
     {
         case 1:
-            computerChoice = "Rock";
+            computerChoice = "rock";
             break;
         case 2:
-            computerChoice = "Paper";
+            computerChoice = "paper";
             break;
         case 3:
-            computerChoice = "Scissors";
+            computerChoice = "scissors";
             break;
     }
     
-   
-
     return computerChoice;
 }
 
 function getHumanChoice()
 {
     let humanChoice = prompt("Rock, paper, or scissors?");
-    return humanChoice.toLowerCase();
+    humanChoice = humanChoice.toLowerCase();
+    return humanChoice;
 }
 
 function playRound(humanChoice, computerChoice)
@@ -52,7 +51,7 @@ function playRound(humanChoice, computerChoice)
                 break;
             case "scissors":
                 console.log("Rock beats scissors! You win!");
-                humanScore++;
+                humanScore += 1;
                 break;
         }
     }
@@ -62,7 +61,7 @@ function playRound(humanChoice, computerChoice)
         {
             case "rock":
                 console.log("Paper beats rock, you win!");
-                humanScore++;
+                humanScore += 1;
                 break;
             case "paper":
                 console.log("Paper ties with paper");
@@ -83,11 +82,28 @@ function playRound(humanChoice, computerChoice)
                 break;
             case "paper":
                 console.log("Scissors beats paper! You win!");
-                humanScore++;
+                humanScore += 1;
                 break;
             case "scissors":
                 console.log("Scissors tie with scissors");
                 break;
         }
+    }
+    numbOfRounds++;
+}
+
+function playGame()
+{
+    while(numbOfRounds <= 5)
+    {
+        playRound(getHumanChoice(), getComputerChoice());
+    }
+    if(humanScore > computerScore)
+    {
+        console.log("Congratulations! You win!");
+    }
+    else
+    {
+        console.log("You lost :( Good luck next time!");
     }
 }
